@@ -1,3 +1,63 @@
+<!--
+  ============================================================
+  Om Sacred Space — v2 Professional Redesign
+  Deployed to: https://sameer-goel.github.io/sri/
+  Repository:  https://github.com/sameer-goel/sri
+  ============================================================
+
+  DEPLOYMENT LOG
+  ==============
+
+  1. Source: omsacredspace.com (Hostinger drag-and-drop site)
+     - Fetched full page content via HTTPS
+     - Extracted all zyrosite.com hosted assets (8 images)
+     - Captured YouTube embed: https://www.youtube.com/watch?v=HXoFEyWIdmo
+
+  2. Assets downloaded locally:
+     - images/hero-bg.png   (from assets.zyrosite.com — hero background)
+     - images/beach.png     (from assets.zyrosite.com — distance healing card)
+     - images/sky.png       (from assets.zyrosite.com — distance healing card)
+     - images/desert.png    (from assets.zyrosite.com — distance healing card)
+     - images/energy.png    (from assets.zyrosite.com — donation section)
+     - images/session.jpg   (from assets.zyrosite.com — benefits section)
+     - images/ocean.jpg     (from unsplash.com — contact section)
+     - images/favicon.png   (from assets.zyrosite.com — site favicon)
+
+  3. GitHub repo created via API:
+     gh repo create sameer-goel/sri - -public - -description "Om Sacred Space"
+     Result: https://github.com/sameer-goel/sri ✓
+
+  4. Repo initialized (Contents API):
+     gh api repos/sameer-goel/sri/contents/README.md - -method PUT
+     Commit: 5f048f0c38050e8b93e655dfe598035e004f6655 ✓
+
+  5. Files pushed via Contents API (one PUT per file):
+     - index.html   ✓
+     - styles.css    ✓
+     - images/favicon.png   ✓ (retried after 409 conflict)
+     - images/desert.png    ✓
+     - images/hero-bg.png   ✓
+     - images/sky.png       ✓
+     - images/energy.png    ✓
+     - images/ocean.jpg     ✓
+     - images/beach.png     ✓
+     - images/session.jpg   ✓
+
+  6. GitHub Pages enabled:
+     Source: main branch, root path (/)
+     gh api repos/sameer-goel/sri/pages - -method POST
+     Live URL: https://sameer-goel.github.io/sri/ ✓
+
+  7. Version history:
+     - v1: Exact replica of original site (Q's initial build)
+     - v2: Professional redesign with theme controller,
+           comparison table, FAQ, scroll animations,
+           7 color themes (Mystic Dark, Sacred Light,
+           Forest Temple, Ocean Depth, Rose Quartz,
+           Desert Sand, Divine Lights)
+
+  ============================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +82,11 @@
       <a href="#benefits" class="nav__link">Benefits</a>
       <a href="#faq" class="nav__link">FAQ</a>
       <a href="#contact" class="nav__link">Contact</a>
+      <a href="https://suhanastore.gumroad.com/l/sriyantra" target="_blank" class="nav__link nav__link--book">📖 Sri Yantra Book</a>
+      <a href="https://www.youtube.com/watch?v=HXoFEyWIdmo" target="_blank" class="nav__link nav__link--yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     </div>
     <a href="#contact" class="nav__cta">Book a Session</a>
+    <button class="theme-panel-trigger" id="themePanelTrigger" aria-label="Theme controller" title="Switch theme"></button>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
@@ -103,7 +166,159 @@
         <div class="card__img"><img src="images/desert.png" alt="Transformation program" loading="lazy"></div>
         <div class="card__body">
           <h3>Transformation</h3>
-          <p class="card__price">108 EUR <span>· 3 sessions</span></p>
+          <p class="card__price">999 EUR <span>· 3 sessions</span></p>
+          <ul>
+            <li>Self-exploration + Divine Visualization "Higher Self"</li>
+            <li>Duality Laws + boundaries by embracing the Dark Divine</li>
+            <li>Inner Child healing + Empowered Self Workshop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="donation-banner reveal">
+      <img src="images/energy.png" alt="Energy healing" loading="lazy">
+      <div>
+        <h3>Distance Energy Healing</h3>
+        <p>Available on a donation basis — healing should be accessible to all.</p>
+        <a href="#contact" class="btn btn--primary btn--sm">Inquire Now</a>
+      </div>
+    </div>
+    <p class="fine-print reveal">Each session lasts 60–120 min. For custom sessions, email <a href="mailto:contact@omsacredspace.com">contact@omsacredspace.com</a></p>
+  </div>
+</section>
+
+<!-- IN-PERSON PROGRAMS -->
+<section class="section section--dark" id="programs">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow">In-Person</p>
+      <h2>Healing Programs</h2>
+      <p class="section-header__sub">Five-session immersive programs designed for deep transformation.</p>
+    </div>
+    <div class="pricing-info reveal">
+      <div class="pricing-info__item"><span>Packages</span><strong>222 EUR</strong></div>
+      <div class="pricing-info__divider"></div>
+      <div class="pricing-info__item"><span>One-on-One</span><strong>50 EUR</strong></div>
+      <div class="pricing-info__divider"></div>
+      <div class="pricing-info__item"><span>Sound Bath</span><strong>20 EUR / person</strong><small>min. 5 people</small></div>
+    </div>
+    <div class="compare-tabs reveal">
+      <button class="compare-tab compare-tab--active" data-filter="all">All Programs</button>
+      <button class="compare-tab" data-filter="individual">Individual</button>
+      <button class="compare-tab" data-filter="couple">Couples</button>
+      <button class="compare-tab" data-filter="group">Group</button>
+    </div>
+
+    <div class="compare-wrap reveal">
+      <div class="compare">
+        <table class="compare__table">
+          <thead>
+            <tr>
+              <th class="compare__corner">Features</th>
+              <th data-cat="individual"><span class="compare__icon">🔔</span><span class="compare__name">Basic</span><span class="compare__for">Newcomers</span></th>
+              <th data-cat="individual"><span class="compare__icon">🌀</span><span class="compare__name">Advanced</span><span class="compare__for">Meditators</span></th>
+              <th data-cat="group"><span class="compare__icon">👨👩👧👦</span><span class="compare__name">Family</span><span class="compare__for">Groups</span></th>
+              <th data-cat="couple"><span class="compare__icon">💞</span><span class="compare__name">Couple Beginner</span><span class="compare__for">Partners (new)</span></th>
+              <th data-cat="couple"><span class="compare__icon">🔥</span><span class="compare__name">Couple Advanced</span><span class="compare__for">Partners (exp.)</span></th>
+              <th data-cat="individual" class="compare__recommended"><span class="compare__rec-badge">Recommended</span><span class="compare__icon">👁️</span><span class="compare__name">Spiritual Awakening</span><span class="compare__for">Seekers</span></th>
+              <th data-cat="individual"><span class="compare__icon">🦋</span><span class="compare__name">Deep Healing</span><span class="compare__for">Trauma / Release</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="compare__group-row"><td colspan="8">Core Techniques</td></tr>
+            <tr><td>Sound Bowls Scanning</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Chakra Balancing / Analysis</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Tuning Fork Therapy</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Breath / Sound Meditation</td><td data-cat="individual">✓</td><td data-cat="individual">✓</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Instruments Trial</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr class="compare__group-row"><td colspan="8">Advanced Practices</td></tr>
+            <tr><td>OM Technique / Guided Trance</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Higher Frequencies Alignment</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
+            <tr><td>Hong-Sau Meditation</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Crystal Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
+            <tr><td>Akashic Records Access</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
+            <tr><td>Nature Elements / Hot &amp; Cold</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
+            <tr class="compare__group-row"><td colspan="8">Emotional &amp; Healing</td></tr>
+            <tr><td>Emotional Release</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
+            <tr><td>Inner Child Work</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
+            <tr><td>Trauma Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
+            <tr><td>Energy Cleanse</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
+            <tr class="compare__group-row"><td colspan="8">Relationship &amp; Group</td></tr>
+            <tr><td>Heart Chakra Focus</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
+            <tr><td>Intimacy Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Tantra Practices</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Self-Heal Teaching</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Group Sound Bath</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Interactive Session</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr><td>Custom Sound Bath</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+            <tr class="compare__group-row"><td colspan="8">Wrap-Up</td></tr>
+            <tr><td>Reflection / Integration</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="group"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="couple"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="couple"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="individual" class="compare__recommended"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>✦ Immune Function</span><span>✦ Better Memory</span><span>✦ Lower Blood Pressure</span><span>✦ Reduced Pain</span><span>✦ Better Digestion</span><span>✦ Nervous System</span><span>✦ Sleep Quality</span>
+    <span>✦ Immune Function</span><span>✦ Better Memory</span><span>✦ Lower Blood Pressure</span><span>✦ Reduced Pain</span><span>✦ Better Digestion</span><span>✦ Nervous System</span><span>✦ Sleep Quality</span>
+  </div>
+</div>
+
+<!-- DISTANCE HEALING -->
+<section class="section section--cream" id="distance">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow">Online Sessions</p>
+      <h2>Distance Healing</h2>
+      <p class="section-header__sub">Energy works beyond the physical realm. With the right intentions and a proper connection, we can take advantage of online healings from anywhere in the world.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <div class="card__img"><img src="images/beach.png" alt="Foundations program" loading="lazy"></div>
+        <div class="card__body">
+          <h3>Foundations</h3>
+          <p class="card__price">88 EUR <span>· 3 sessions</span></p>
+          <ul>
+            <li>Energy cleanse & protect + cord cutting meditation</li>
+            <li>Chakra Analysis + learn how to heal them</li>
+            <li>Breathwork Teaching + Taia Connection Sacred Ritual</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--featured">
+        <div class="card__badge">Most Popular</div>
+        <div class="card__img"><img src="images/sky.png" alt="Awakening program" loading="lazy"></div>
+        <div class="card__body">
+          <h3>Awakening</h3>
+          <p class="card__price">145 EUR <span>· 3 sessions</span></p>
+          <ul>
+            <li>Create your own Mantra & affirmations + Visualization</li>
+            <li>Find your meditation type + Releasing & Detachment</li>
+            <li>Chakra Healing + connect with your Intuition</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__img"><img src="images/desert.png" alt="Transformation program" loading="lazy"></div>
+        <div class="card__body">
+          <h3>Transformation</h3>
+          <p class="card__price">999 EUR <span>· 3 sessions</span></p>
           <ul>
             <li>Self-exploration + Divine Visualization "Higher Self"</li>
             <li>Duality Laws + boundaries by embracing the Dark Divine</li>
@@ -381,6 +596,62 @@
   </div>
 </footer>
 
+<!-- THEME CONTROLLER PANEL -->
+<div class="tp" id="themePanel">
+  <div class="tp__header">
+    <h4>Theme Controller</h4>
+    <button class="tp__close" id="themePanelClose">&times;</button>
+  </div>
+
+  <div class="tp__section">
+    <p class="tp__label">Presets</p>
+    <div class="tp__presets" id="themePresets">
+      <button class="tp__preset tp__preset--active" data-theme="dark">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#0c0a1d,#110e2a)"></span>
+        <span>Mystic Dark</span>
+      </button>
+      <button class="tp__preset" data-theme="light">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#faf8f5,#f2efe9)"></span>
+        <span>Sacred Light</span>
+      </button>
+      <button class="tp__preset" data-theme="forest">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#0a1a12,#0f2618)"></span>
+        <span>Forest Temple</span>
+      </button>
+      <button class="tp__preset" data-theme="ocean">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#0a1520,#0c1e2e)"></span>
+        <span>Ocean Depth</span>
+      </button>
+      <button class="tp__preset" data-theme="rose">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#1d0f18,#2a1520)"></span>
+        <span>Rose Quartz</span>
+      </button>
+      <button class="tp__preset" data-theme="sand">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#f5f0e8,#ebe4d8)"></span>
+        <span>Desert Sand</span>
+      </button>
+      <button class="tp__preset" data-theme="divine">
+        <span class="tp__swatch" style="background:linear-gradient(135deg,#0d0b1a,#1a1030);box-shadow:0 0 8px rgba(180,120,255,0.4),0 0 8px rgba(100,200,255,0.3)"></span>
+        <span>Divine Lights</span>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="tp__section">
+    <p class="tp__label">Active: <strong id="activeThemeName">Mystic Dark</strong></p>
+  </div>
+
+  <div class="tp__section" id="glowSection">
+    <p class="tp__label">Glow Intensity</p>
+    <div class="tp__slider-wrap">
+      <input type="range" class="tp__slider" id="glowSlider" min="0" max="100" value="100">
+      <span class="tp__slider-val" id="glowVal">100%</span>
+    </div>
+  </div>
+</div>
+<div class="tp__backdrop" id="tpBackdrop"></div>
+
 <script>
 // Sticky header
 const header = document.getElementById('header');
@@ -425,6 +696,68 @@ const navObserver = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-50% 0px -50% 0px' });
 sections.forEach(s => navObserver.observe(s));
+// Theme Controller
+const themeNames = {
+  dark: 'Mystic Dark', light: 'Sacred Light', forest: 'Forest Temple',
+  ocean: 'Ocean Depth', rose: 'Rose Quartz', sand: 'Desert Sand', divine: 'Divine Lights'
+};
+const panel = document.getElementById('themePanel');
+const backdrop = document.getElementById('tpBackdrop');
+const trigger = document.getElementById('themePanelTrigger');
+const closeBtn = document.getElementById('themePanelClose');
+const presetsEl = document.getElementById('themePresets');
+const activeNameEl = document.getElementById('activeThemeName');
+
+let current = localStorage.getItem('oss-theme') || 'divine';
+
+function applyTheme(name) {
+  document.documentElement.setAttribute('data-theme', name);
+  localStorage.setItem('oss-theme', name);
+  current = name;
+  activeNameEl.textContent = themeNames[name] || name;
+  presetsEl.querySelectorAll('.tp__preset').forEach(b => {
+    b.classList.toggle('tp__preset--active', b.dataset.theme === name);
+  });
+}
+
+
+function openPanel() { panel.classList.add('tp--open'); backdrop.classList.add('tp__backdrop--open'); }
+function closePanel() { panel.classList.remove('tp--open'); backdrop.classList.remove('tp__backdrop--open'); }
+
+trigger.addEventListener('click', () => panel.classList.contains('tp--open') ? closePanel() : openPanel());
+closeBtn.addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+
+presetsEl.querySelectorAll('.tp__preset').forEach(b => {
+  b.addEventListener('click', () => applyTheme(b.dataset.theme));
+});
+
+applyTheme(current);
+
+// Compare table tabs
+document.querySelectorAll('.compare-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.compare-tab').forEach(t => t.classList.remove('compare-tab--active'));
+    tab.classList.add('compare-tab--active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.compare__table th[data-cat], .compare__table td[data-cat]').forEach(cell => {
+      cell.style.display = (filter === 'all' || cell.dataset.cat === filter) ? '' : 'none';
+    });
+  });
+});
+
+// Glow intensity
+const glowSlider = document.getElementById('glowSlider');
+const glowVal = document.getElementById('glowVal');
+const savedGlow = localStorage.getItem('oss-glow');
+if (savedGlow) { glowSlider.value = savedGlow; } else { glowSlider.value = 50; }
+document.documentElement.style.setProperty('--glow-intensity', (glowSlider.value / 100));
+glowVal.textContent = glowSlider.value + '%';
+glowSlider.addEventListener('input', () => {
+  document.documentElement.style.setProperty('--glow-intensity', (glowSlider.value / 100));
+  glowVal.textContent = glowSlider.value + '%';
+  localStorage.setItem('oss-glow', glowSlider.value);
+});
 </script>
 </body>
 </html>
