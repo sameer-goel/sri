@@ -1,63 +1,3 @@
-<!--
-  ============================================================
-  Om Sacred Space — v2 Professional Redesign
-  Deployed to: https://sameer-goel.github.io/sri/
-  Repository:  https://github.com/sameer-goel/sri
-  ============================================================
-
-  DEPLOYMENT LOG
-  ==============
-
-  1. Source: omsacredspace.com (Hostinger drag-and-drop site)
-     - Fetched full page content via HTTPS
-     - Extracted all zyrosite.com hosted assets (8 images)
-     - Captured YouTube embed: https://www.youtube.com/watch?v=HXoFEyWIdmo
-
-  2. Assets downloaded locally:
-     - images/hero-bg.png   (from assets.zyrosite.com — hero background)
-     - images/beach.png     (from assets.zyrosite.com — distance healing card)
-     - images/sky.png       (from assets.zyrosite.com — distance healing card)
-     - images/desert.png    (from assets.zyrosite.com — distance healing card)
-     - images/energy.png    (from assets.zyrosite.com — donation section)
-     - images/session.jpg   (from assets.zyrosite.com — benefits section)
-     - images/ocean.jpg     (from unsplash.com — contact section)
-     - images/favicon.png   (from assets.zyrosite.com — site favicon)
-
-  3. GitHub repo created via API:
-     gh repo create sameer-goel/sri - -public - -description "Om Sacred Space"
-     Result: https://github.com/sameer-goel/sri ✓
-
-  4. Repo initialized (Contents API):
-     gh api repos/sameer-goel/sri/contents/README.md - -method PUT
-     Commit: 5f048f0c38050e8b93e655dfe598035e004f6655 ✓
-
-  5. Files pushed via Contents API (one PUT per file):
-     - index.html   ✓
-     - styles.css    ✓
-     - images/favicon.png   ✓ (retried after 409 conflict)
-     - images/desert.png    ✓
-     - images/hero-bg.png   ✓
-     - images/sky.png       ✓
-     - images/energy.png    ✓
-     - images/ocean.jpg     ✓
-     - images/beach.png     ✓
-     - images/session.jpg   ✓
-
-  6. GitHub Pages enabled:
-     Source: main branch, root path (/)
-     gh api repos/sameer-goel/sri/pages - -method POST
-     Live URL: https://sameer-goel.github.io/sri/ ✓
-
-  7. Version history:
-     - v1: Exact replica of original site (Q's initial build)
-     - v2: Professional redesign with theme controller,
-           comparison table, FAQ, scroll animations,
-           7 color themes (Mystic Dark, Sacred Light,
-           Forest Temple, Ocean Depth, Rose Quartz,
-           Desert Sand, Divine Lights)
-
-  ============================================================
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,9 +7,254 @@
   <meta name="description" content="Discover the power of chakra energizing, sacred sound baths, and energy healing at Om Sacred Space.">
   <link rel="icon" href="images/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== PORTAL LAYERS ===== */
+    .portal-splash,
+    .portal-tunnel,
+    .portal-arrive {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+
+    .portal-splash {
+      z-index: 9999; background: #050311;
+      flex-direction: column; cursor: pointer;
+    }
+    .portal-splash--hidden { opacity: 0; pointer-events: none; }
+    .portal-splash__om {
+      font-size: clamp(72px, 18vw, 140px);
+      color: rgba(201,169,110,0.9);
+      animation: breathe 4s ease-in-out infinite;
+      user-select: none;
+    }
+    .portal-splash__text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(18px, 3vw, 26px);
+      color: rgba(200,190,170,0.7);
+      margin-top: 24px; letter-spacing: 0.08em;
+      animation: portalFadeInUp 1.5s ease 0.5s both;
+    }
+    .portal-splash__hint {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; color: rgba(200,190,170,0.3);
+      margin-top: 40px; letter-spacing: 0.12em; text-transform: uppercase;
+      animation: portalFadeInUp 1.5s ease 1s both;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+    @keyframes portalFadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .portal-tunnel {
+      z-index: 9998; background: #050311;
+      opacity: 0; pointer-events: none; overflow: hidden;
+    }
+    .portal-tunnel--active { opacity: 1; }
+    .portal-tunnel--fading { transition: opacity 1.2s ease; opacity: 0; }
+    .portal-tunnel__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    .portal-tunnel__rings {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      perspective: 900px;
+    }
+    .tunnel-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.12);
+      opacity: 0; will-change: transform, opacity;
+    }
+    .tunnel-ring--go {
+      animation: ringRush var(--ring-dur, 5s) var(--ring-delay, 0s) ease-in forwards;
+    }
+    @keyframes ringRush {
+      0%   { transform: scale(0.05); opacity: 0; }
+      10%  { opacity: 0.7; }
+      70%  { opacity: 0.5; }
+      100% { transform: scale(6); opacity: 0; }
+    }
+
+    .portal-tunnel__flash {
+      position: absolute; inset: 0; z-index: 10;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(200,180,255,0.6) 50%, transparent 70%);
+      opacity: 0; pointer-events: none;
+    }
+    .portal-tunnel__flash--active {
+      animation: flash 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes flash {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.5); }
+      100% { opacity: 0; transform: scale(3); }
+    }
+
+    .portal-tunnel__destination {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .portal-tunnel__yantra {
+      width: 100vw; height: 100vh;
+      object-fit: cover; opacity: 0;
+      will-change: transform, opacity;
+    }
+    .portal-tunnel__yantra--grow {
+      animation: yantraApproach var(--tunnel-total, 5s) linear forwards;
+    }
+    @keyframes yantraApproach {
+      0%   { transform: scale(0.01) rotate(0deg); border-radius: 50%; opacity: 0; }
+      3%   { opacity: 0.6; }
+      20%  { transform: scale(0.03) rotate(360deg); border-radius: 50%; opacity: 0.6; }
+      40%  { transform: scale(0.08) rotate(720deg); border-radius: 40%; opacity: 0.7; }
+      60%  { transform: scale(0.2) rotate(1080deg); border-radius: 20%; opacity: 0.8; }
+      80%  { transform: scale(0.5) rotate(1380deg); border-radius: 6%; opacity: 0.9; }
+      90%  { transform: scale(0.75) rotate(1420deg); border-radius: 2%; opacity: 0.95; }
+      96%  { transform: scale(0.92) rotate(1436deg); border-radius: 0.5%; opacity: 1; }
+      100% { transform: scale(1) rotate(1440deg); border-radius: 0; opacity: 1; }
+    }
+
+    .portal-arrive {
+      z-index: 9997; background: #050311;
+      opacity: 0; pointer-events: none;
+    }
+
+    .portal-welcome {
+      position: fixed; inset: 0; z-index: 9996;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(5,3,17,0.88);
+      opacity: 0; pointer-events: none;
+    }
+    .portal-welcome--active { opacity: 1; }
+    .portal-welcome--fading { transition: opacity 1.5s ease; opacity: 0; }
+
+    .welcome-ink { position: relative; display: inline-block; margin-bottom: 8px; }
+    .welcome-ink__text {
+      font-family: 'Dancing Script', cursive;
+      white-space: nowrap;
+      clip-path: inset(0 100% 0 0);
+    }
+    .welcome-ink__text--writing {
+      animation: inkReveal var(--ink-dur, 2s) var(--ink-delay, 0s) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    @keyframes inkReveal { to { clip-path: inset(0 0% 0 0); } }
+
+    .welcome-ink--top .welcome-ink__text {
+      font-size: clamp(18px, 3vw, 28px); font-weight: 400;
+      color: rgba(200,190,170,0.7); letter-spacing: 0.05em;
+    }
+    .welcome-ink--main .welcome-ink__text {
+      font-size: clamp(40px, 8vw, 80px); font-weight: 700;
+      color: #c9a96e; letter-spacing: 0.01em;
+    }
+    .welcome-ink--main .welcome-om { font-size: 1.05em; }
+
+    .welcome-ink__pen {
+      position: absolute; top: 50%; transform: translateY(-60%);
+      width: 32px; height: 32px;
+      opacity: 0; pointer-events: none;
+      filter: drop-shadow(0 0 6px rgba(201,169,110,0.4));
+    }
+    .welcome-ink__pen--active {
+      animation: penMove var(--ink-dur, 2s) var(--ink-delay, 0s) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    @keyframes penMove {
+      0%   { left: 0%; opacity: 1; }
+      95%  { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    .welcome-ink__glow {
+      position: absolute; top: 50%; left: 0;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(201,169,110,0.6);
+      box-shadow: 0 0 12px rgba(201,169,110,0.4);
+      transform: translate(-50%, -50%); opacity: 0;
+    }
+    .welcome-ink__glow--active {
+      animation: inkDot 0.6s var(--ink-delay, 0s) ease-out forwards;
+    }
+    @keyframes inkDot {
+      0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(3); }
+    }
+
+    .sound-toggle {
+      position: fixed; bottom: 24px; right: 24px; z-index: 10000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--gold, #c9a96e); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; opacity: 0; pointer-events: none;
+    }
+    .sound-toggle--visible { opacity: 1; pointer-events: auto; }
+    .sound-toggle:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+    .sound-toggle svg { width: 20px; height: 20px; }
+  </style>
 </head>
 <body>
+
+<!-- ========== PORTAL: SPLASH ========== -->
+<div class="portal-splash" id="portalSplash">
+  <div class="portal-splash__om">ॐ</div>
+  <p class="portal-splash__text">Enter the Sacred Space</p>
+  <p class="portal-splash__hint">tap anywhere to begin</p>
+</div>
+
+<!-- ========== PORTAL: TUNNEL ========== -->
+<div class="portal-tunnel" id="portalTunnel">
+  <canvas class="portal-tunnel__canvas" id="tunnelCanvas"></canvas>
+  <div class="portal-tunnel__rings" id="tunnelRings"></div>
+  <div class="portal-tunnel__flash" id="tunnelFlash"></div>
+  <div class="portal-tunnel__destination">
+    <img class="portal-tunnel__yantra" id="tunnelYantra" src="images/hero-bg.png" alt="Sri Yantra">
+  </div>
+</div>
+
+<!-- ========== PORTAL: ARRIVE ========== -->
+<div class="portal-arrive" id="portalArrive"></div>
+
+<!-- ========== PORTAL: WELCOME ========== -->
+<div class="portal-welcome" id="portalWelcome">
+  <div class="welcome-ink welcome-ink--top" id="welcomeTop">
+    <div class="welcome-ink__glow"></div>
+    <div class="welcome-ink__text">Welcome to</div>
+    <svg class="welcome-ink__pen" viewBox="0 0 32 32" fill="none">
+      <path d="M6 26L24 4" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M24 4L28 2L26 6L24 4Z" fill="#c9a96e"/>
+      <path d="M6 26L4 30L8 28L6 26Z" fill="#c9a96e" opacity="0.6"/>
+      <path d="M7 25L23 5" stroke="rgba(201,169,110,0.3)" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="welcome-ink welcome-ink--main" id="welcomeMain">
+    <div class="welcome-ink__glow"></div>
+    <div class="welcome-ink__text"><span class="welcome-om">ॐ</span> Sacred Space</div>
+    <svg class="welcome-ink__pen" viewBox="0 0 32 32" fill="none">
+      <path d="M6 26L24 4" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M24 4L28 2L26 6L24 4Z" fill="#c9a96e"/>
+      <path d="M6 26L4 30L8 28L6 26Z" fill="#c9a96e" opacity="0.6"/>
+      <path d="M7 25L23 5" stroke="rgba(201,169,110,0.3)" stroke-width="0.5"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ========== SOUND TOGGLE ========== -->
+<button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
+  <svg id="soundOn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+  </svg>
+  <svg id="soundOff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+  </svg>
+</button>
 
 <!-- NAV -->
 <header class="header" id="header">
@@ -653,6 +838,162 @@
 <div class="tp__backdrop" id="tpBackdrop"></div>
 
 <script>
+// ===== PORTAL ENGINE =====
+(function() {
+  const TIMING = {
+    splashFade: 800,
+    tunnelDur: 6000,
+    welcomeHold: 1500,
+    welcomeFade: 1500,
+  };
+
+  const splash = document.getElementById('portalSplash');
+  const tunnel = document.getElementById('portalTunnel');
+  const arrive = document.getElementById('portalArrive');
+  const tunnelCanvas = document.getElementById('tunnelCanvas');
+  const tunnelRings = document.getElementById('tunnelRings');
+  const tunnelYantra = document.getElementById('tunnelYantra');
+  const soundToggle = document.getElementById('soundToggle');
+  const soundOnIcon = document.getElementById('soundOn');
+  const soundOffIcon = document.getElementById('soundOff');
+
+  const SOUND_URL = 'https://cdn.freesound.org/previews/746/746023_5674468-lq.mp3';
+  let audio = null, soundPlaying = false;
+
+  function updateToggleIcon() {
+    soundOnIcon.style.display = soundPlaying ? '' : 'none';
+    soundOffIcon.style.display = soundPlaying ? 'none' : '';
+  }
+  function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  // Starfield
+  const starfield = (function() {
+    const ctx = tunnelCanvas.getContext('2d');
+    let W, H, stars = [], speed = 0.3, raf, running = false;
+    function resize() { W = tunnelCanvas.width = window.innerWidth; H = tunnelCanvas.height = window.innerHeight; }
+    function init() {
+      resize(); window.addEventListener('resize', resize);
+      stars = [];
+      for (let i = 0; i < 500; i++) stars.push({ x: (Math.random()-0.5)*W*3, y: (Math.random()-0.5)*H*3, z: Math.random()*2000, o: Math.random() });
+    }
+    function draw() {
+      ctx.fillStyle = 'rgba(5,3,17,0.25)'; ctx.fillRect(0,0,W,H);
+      const cx = W/2, cy = H/2;
+      for (const s of stars) {
+        s.z -= speed;
+        if (s.z <= 0) { s.z = 2000; s.x = (Math.random()-0.5)*W*3; s.y = (Math.random()-0.5)*H*3; }
+        const sx = (s.x/s.z)*500+cx, sy = (s.y/s.z)*500+cy;
+        if (sx < -50 || sx > W+50 || sy < -50 || sy > H+50) continue;
+        const depth = 1 - s.z/2000, r = depth * (speed > 8 ? 2.5 : 1.5);
+        if (speed > 4) {
+          const pz = s.z+speed*3, px = (s.x/pz)*500+cx, py = (s.y/pz)*500+cy;
+          ctx.strokeStyle = `hsla(${260+s.o*60},70%,70%,${depth*0.5})`; ctx.lineWidth = r*0.6;
+          ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(sx,sy); ctx.stroke();
+        }
+        const hue = speed > 4 ? 260+s.o*80 : 40+s.o*20, lum = speed > 4 ? 70+s.o*20 : 80;
+        ctx.fillStyle = `hsla(${hue},50%,${lum}%,${depth*0.8})`;
+        ctx.beginPath(); ctx.arc(sx,sy,r,0,Math.PI*2); ctx.fill();
+      }
+      if (running) raf = requestAnimationFrame(draw);
+    }
+    return {
+      start() { init(); running = true; draw(); },
+      stop() { running = false; cancelAnimationFrame(raf); },
+      rampSpeed(from, to, duration) {
+        const start = performance.now();
+        const tick = () => { const t = Math.min((performance.now()-start)/duration,1); speed = from+(to-from)*t*t; if (t < 1 && running) requestAnimationFrame(tick); };
+        tick();
+      }
+    };
+  })();
+
+  // Rings
+  (function() {
+    const count = 18, totalDur = TIMING.tunnelDur/1000;
+    for (let i = 0; i < count; i++) {
+      const ring = document.createElement('div'); ring.className = 'tunnel-ring';
+      const size = 30+i*25; ring.style.width = size+'px'; ring.style.height = size+'px';
+      ring.style.setProperty('--ring-delay', ((i/count)*totalDur*0.7)+'s');
+      ring.style.setProperty('--ring-dur', (totalDur*0.6+Math.random()*0.5)+'s');
+      const hue = 40-(i/count)*100, sat = 50+(i/count)*20;
+      ring.style.borderColor = `hsla(${hue},${sat}%,60%,${0.08+(i/count)*0.18})`;
+      ring.style.boxShadow = `0 0 ${8+i*2}px hsla(${hue},${sat}%,60%,0.04), inset 0 0 ${6+i}px hsla(280,50%,60%,0.02)`;
+      tunnelRings.appendChild(ring);
+    }
+  })();
+
+  function fireRings() { tunnelRings.querySelectorAll('.tunnel-ring').forEach(r => r.classList.add('tunnel-ring--go')); }
+
+  // Main flow
+  let started = false;
+  splash.addEventListener('click', async () => {
+    if (started) return; started = true;
+
+    audio = new Audio(SOUND_URL); audio.loop = true; audio.volume = 0.4;
+    audio.play().then(() => { soundPlaying = true; updateToggleIcon(); }).catch(() => {});
+
+    tunnel.classList.add('portal-tunnel--active');
+    starfield.start();
+    splash.classList.add('portal-splash--hidden');
+    await wait(TIMING.splashFade); splash.style.display = 'none';
+
+    starfield.rampSpeed(0.3, 50, TIMING.tunnelDur);
+    fireRings();
+
+    await wait(400);
+    tunnelYantra.style.setProperty('--tunnel-total', (TIMING.tunnelDur-400)+'ms');
+    tunnelYantra.classList.add('portal-tunnel__yantra--grow');
+
+    await wait((TIMING.tunnelDur-400)*0.7);
+    document.getElementById('tunnelFlash').classList.add('portal-tunnel__flash--active');
+    await wait((TIMING.tunnelDur-400)*0.3);
+
+    starfield.stop();
+
+    const welcome = document.getElementById('portalWelcome');
+    const welcomeTop = document.getElementById('welcomeTop');
+    const welcomeMain = document.getElementById('welcomeMain');
+    tunnel.classList.add('portal-tunnel--fading');
+    welcome.classList.add('portal-welcome--active');
+
+    const topText = welcomeTop.querySelector('.welcome-ink__text');
+    const topPen = welcomeTop.querySelector('.welcome-ink__pen');
+    const topGlow = welcomeTop.querySelector('.welcome-ink__glow');
+    topText.style.setProperty('--ink-dur','1.2s'); topText.style.setProperty('--ink-delay','0.3s');
+    topPen.style.setProperty('--ink-dur','1.2s'); topPen.style.setProperty('--ink-delay','0.3s');
+    topGlow.style.setProperty('--ink-delay','0.3s');
+    topText.classList.add('welcome-ink__text--writing');
+    topPen.classList.add('welcome-ink__pen--active');
+    topGlow.classList.add('welcome-ink__glow--active');
+    await wait(1700);
+
+    const mainText = welcomeMain.querySelector('.welcome-ink__text');
+    const mainPen = welcomeMain.querySelector('.welcome-ink__pen');
+    const mainGlow = welcomeMain.querySelector('.welcome-ink__glow');
+    mainText.style.setProperty('--ink-dur','2s'); mainText.style.setProperty('--ink-delay','0s');
+    mainPen.style.setProperty('--ink-dur','2s'); mainPen.style.setProperty('--ink-delay','0s');
+    mainGlow.style.setProperty('--ink-delay','0s');
+    mainText.classList.add('welcome-ink__text--writing');
+    mainPen.classList.add('welcome-ink__pen--active');
+    mainGlow.classList.add('welcome-ink__glow--active');
+    await wait(2200);
+    await wait(TIMING.welcomeHold);
+
+    welcome.classList.add('portal-welcome--fading');
+    soundToggle.classList.add('sound-toggle--visible');
+    await wait(TIMING.welcomeFade);
+
+    splash.remove(); tunnel.remove(); arrive.remove(); welcome.remove();
+  });
+
+  soundToggle.addEventListener('click', () => {
+    if (!audio) return;
+    if (soundPlaying) { audio.pause(); soundPlaying = false; }
+    else { audio.play(); soundPlaying = true; }
+    updateToggleIcon();
+  });
+})();
+
 // Sticky header
 const header = document.getElementById('header');
 let lastY = 0;
