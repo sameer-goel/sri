@@ -261,14 +261,19 @@
   <nav class="nav container">
     <a href="#" class="nav__logo">Om Sacred Space</a>
     <div class="nav__links" id="navLinks">
-      <a href="#about" class="nav__link">About</a>
-      <a href="#distance" class="nav__link">Distance Healing</a>
-      <a href="#programs" class="nav__link">Programs</a>
-      <a href="#benefits" class="nav__link">Benefits</a>
-      <a href="#faq" class="nav__link">FAQ</a>
-      <a href="#contact" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <button class="nav__dropdown-trigger" id="navDropdownTrigger">Explore <svg viewBox="0 0 12 8" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5l5 5 5-5"/></svg></button>
+        <div class="nav__dropdown-menu" id="navDropdownMenu">
+          <a href="#about" class="nav__link">About</a>
+          <a href="#distance" class="nav__link">Distance Healing</a>
+          <a href="#programs" class="nav__link">Programs</a>
+          <a href="#benefits" class="nav__link">Benefits</a>
+          <a href="#faq" class="nav__link">FAQ</a>
+          <a href="#contact" class="nav__link">Contact</a>
+        </div>
+      </div>
       <a href="https://suhanastore.gumroad.com/l/sriyantra" target="_blank" class="nav__link nav__link--book">📖 Sri Yantra Book</a>
-      <a href="https://www.youtube.com/watch?v=HXoFEyWIdmo" target="_blank" class="nav__link nav__link--yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://www.youtube.com/@healingsuhana/videos" target="_blank" class="nav__link nav__link--yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     </div>
     <a href="#contact" class="nav__cta">Book a Session</a>
     <button class="theme-panel-trigger" id="themePanelTrigger" aria-label="Theme controller" title="Switch theme"></button>
@@ -351,7 +356,7 @@
         <div class="card__img"><img src="images/desert.png" alt="Transformation program" loading="lazy"></div>
         <div class="card__body">
           <h3>Transformation</h3>
-          <p class="card__price">999 EUR <span>· 3 sessions</span></p>
+          <p class="card__price">999 EUR <span>· all sessions + coaching </span></p>
           <ul>
             <li>Self-exploration + Divine Visualization "Higher Self"</li>
             <li>Duality Laws + boundaries by embracing the Dark Divine</li>
@@ -372,157 +377,6 @@
   </div>
 </section>
 
-<!-- IN-PERSON PROGRAMS -->
-<section class="section section--dark" id="programs">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="eyebrow">In-Person</p>
-      <h2>Healing Programs</h2>
-      <p class="section-header__sub">Five-session immersive programs designed for deep transformation.</p>
-    </div>
-    <div class="pricing-info reveal">
-      <div class="pricing-info__item"><span>Packages</span><strong>222 EUR</strong></div>
-      <div class="pricing-info__divider"></div>
-      <div class="pricing-info__item"><span>One-on-One</span><strong>50 EUR</strong></div>
-      <div class="pricing-info__divider"></div>
-      <div class="pricing-info__item"><span>Sound Bath</span><strong>20 EUR / person</strong><small>min. 5 people</small></div>
-    </div>
-    <div class="compare-tabs reveal">
-      <button class="compare-tab compare-tab--active" data-filter="all">All Programs</button>
-      <button class="compare-tab" data-filter="individual">Individual</button>
-      <button class="compare-tab" data-filter="couple">Couples</button>
-      <button class="compare-tab" data-filter="group">Group</button>
-    </div>
-
-    <div class="compare-wrap reveal">
-      <div class="compare">
-        <table class="compare__table">
-          <thead>
-            <tr>
-              <th class="compare__corner">Features</th>
-              <th data-cat="individual"><span class="compare__icon">🔔</span><span class="compare__name">Basic</span><span class="compare__for">Newcomers</span></th>
-              <th data-cat="individual"><span class="compare__icon">🌀</span><span class="compare__name">Advanced</span><span class="compare__for">Meditators</span></th>
-              <th data-cat="group"><span class="compare__icon">👨👩👧👦</span><span class="compare__name">Family</span><span class="compare__for">Groups</span></th>
-              <th data-cat="couple"><span class="compare__icon">💞</span><span class="compare__name">Couple Beginner</span><span class="compare__for">Partners (new)</span></th>
-              <th data-cat="couple"><span class="compare__icon">🔥</span><span class="compare__name">Couple Advanced</span><span class="compare__for">Partners (exp.)</span></th>
-              <th data-cat="individual" class="compare__recommended"><span class="compare__rec-badge">Recommended</span><span class="compare__icon">👁️</span><span class="compare__name">Spiritual Awakening</span><span class="compare__for">Seekers</span></th>
-              <th data-cat="individual"><span class="compare__icon">🦋</span><span class="compare__name">Deep Healing</span><span class="compare__for">Trauma / Release</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="compare__group-row"><td colspan="8">Core Techniques</td></tr>
-            <tr><td>Sound Bowls Scanning</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Chakra Balancing / Analysis</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Tuning Fork Therapy</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Breath / Sound Meditation</td><td data-cat="individual">✓</td><td data-cat="individual">✓</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Instruments Trial</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr class="compare__group-row"><td colspan="8">Advanced Practices</td></tr>
-            <tr><td>OM Technique / Guided Trance</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Higher Frequencies Alignment</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
-            <tr><td>Hong-Sau Meditation</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Crystal Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
-            <tr><td>Akashic Records Access</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
-            <tr><td>Nature Elements / Hot &amp; Cold</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
-            <tr class="compare__group-row"><td colspan="8">Emotional &amp; Healing</td></tr>
-            <tr><td>Emotional Release</td><td data-cat="individual">—</td><td data-cat="individual">✓</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
-            <tr><td>Inner Child Work</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
-            <tr><td>Trauma Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
-            <tr><td>Energy Cleanse</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">✓</td></tr>
-            <tr class="compare__group-row"><td colspan="8">Relationship &amp; Group</td></tr>
-            <tr><td>Heart Chakra Focus</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">✓</td><td data-cat="individual">—</td></tr>
-            <tr><td>Intimacy Healing</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Tantra Practices</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Self-Heal Teaching</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">—</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Group Sound Bath</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Interactive Session</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">✓</td><td data-cat="couple">—</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr><td>Custom Sound Bath</td><td data-cat="individual">—</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">✓</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-            <tr class="compare__group-row"><td colspan="8">Wrap-Up</td></tr>
-            <tr><td>Reflection / Integration</td><td data-cat="individual">✓</td><td data-cat="individual">—</td><td data-cat="group">—</td><td data-cat="couple">✓</td><td data-cat="couple">—</td><td data-cat="individual" class="compare__recommended">—</td><td data-cat="individual">—</td></tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td></td>
-              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="group"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="couple"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="couple"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="individual" class="compare__recommended"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-              <td data-cat="individual"><a href="#contact" class="btn btn--primary btn--sm">Book</a></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS MARQUEE -->
-<div class="marquee">
-  <div class="marquee__track">
-    <span>✦ Immune Function</span><span>✦ Better Memory</span><span>✦ Lower Blood Pressure</span><span>✦ Reduced Pain</span><span>✦ Better Digestion</span><span>✦ Nervous System</span><span>✦ Sleep Quality</span>
-    <span>✦ Immune Function</span><span>✦ Better Memory</span><span>✦ Lower Blood Pressure</span><span>✦ Reduced Pain</span><span>✦ Better Digestion</span><span>✦ Nervous System</span><span>✦ Sleep Quality</span>
-  </div>
-</div>
-
-<!-- DISTANCE HEALING -->
-<section class="section section--cream" id="distance">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="eyebrow">Online Sessions</p>
-      <h2>Distance Healing</h2>
-      <p class="section-header__sub">Energy works beyond the physical realm. With the right intentions and a proper connection, we can take advantage of online healings from anywhere in the world.</p>
-    </div>
-    <div class="cards reveal">
-      <div class="card">
-        <div class="card__img"><img src="images/beach.png" alt="Foundations program" loading="lazy"></div>
-        <div class="card__body">
-          <h3>Foundations</h3>
-          <p class="card__price">88 EUR <span>· 3 sessions</span></p>
-          <ul>
-            <li>Energy cleanse & protect + cord cutting meditation</li>
-            <li>Chakra Analysis + learn how to heal them</li>
-            <li>Breathwork Teaching + Taia Connection Sacred Ritual</li>
-          </ul>
-        </div>
-      </div>
-      <div class="card card--featured">
-        <div class="card__badge">Most Popular</div>
-        <div class="card__img"><img src="images/sky.png" alt="Awakening program" loading="lazy"></div>
-        <div class="card__body">
-          <h3>Awakening</h3>
-          <p class="card__price">145 EUR <span>· 3 sessions</span></p>
-          <ul>
-            <li>Create your own Mantra & affirmations + Visualization</li>
-            <li>Find your meditation type + Releasing & Detachment</li>
-            <li>Chakra Healing + connect with your Intuition</li>
-          </ul>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card__img"><img src="images/desert.png" alt="Transformation program" loading="lazy"></div>
-        <div class="card__body">
-          <h3>Transformation</h3>
-          <p class="card__price">999 EUR <span>· 3 sessions</span></p>
-          <ul>
-            <li>Self-exploration + Divine Visualization "Higher Self"</li>
-            <li>Duality Laws + boundaries by embracing the Dark Divine</li>
-            <li>Inner Child healing + Empowered Self Workshop</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="donation-banner reveal">
-      <img src="images/energy.png" alt="Energy healing" loading="lazy">
-      <div>
-        <h3>Distance Energy Healing</h3>
-        <p>Available on a donation basis — healing should be accessible to all.</p>
-        <a href="#contact" class="btn btn--primary btn--sm">Inquire Now</a>
-      </div>
-    </div>
-    <p class="fine-print reveal">Each session lasts 60–120 min. For custom sessions, email <a href="mailto:contact@omsacredspace.com">contact@omsacredspace.com</a></p>
-  </div>
-</section>
 
 <!-- IN-PERSON PROGRAMS -->
 <section class="section section--dark" id="programs">
@@ -542,79 +396,79 @@
     <div class="programs-grid reveal">
       <div class="program">
         <div class="program__icon">🔔</div>
-        <h3>Basic</h3>
+        <h3>Basic Package</h3>
         <ul>
-          <li>30' Connection + 30' sound bowls scanning</li>
-          <li>30' Instruments trial + 30' Sound Healing</li>
-          <li>60' Chakra balancing, cleanse, alignment</li>
-          <li>30' Guided Meditation + 30' Tuning Fork Therapy</li>
-          <li>30' Reflection + 30' Sound Healing Session</li>
+          <li>1st: 30' Connection + 30' sound bowls scanning</li>
+          <li>2nd: 30' Instruments trial + 30' Sound Healing Session</li>
+          <li>3rd: 60' Sound Healing — Chakra balancing, cleanse, alignment</li>
+          <li>4th: 30' Sound/Breath Guided Meditation + 30' Tuning Fork Therapy</li>
+          <li>5th: 30' Reflection/Integration + 30' Sound Healing Session</li>
         </ul>
       </div>
       <div class="program">
         <div class="program__icon">🌀</div>
-        <h3>Advanced</h3>
+        <h3>Advanced Package</h3>
         <ul>
-          <li>30' OM technique + 30' Guided Trance</li>
-          <li>30' Resonance Teaching + 30' Emotional Release</li>
-          <li>60' Aligning with Higher Frequencies</li>
-          <li>30' Sound/Silence Integration + 30' Hong-Sau</li>
-          <li>60' Sound Healing for Meditation Goals</li>
+          <li>1st: 30' Connection &amp; OM technique + 30' Sound Healing Guided Trance</li>
+          <li>2nd: 30' Resonance Teaching + 30' Sound Healing Emotional Release</li>
+          <li>3rd: 60' Sound Healing aligning with Higher Frequencies</li>
+          <li>4th: 30' Sound/Silence Integration + 30' Sound Healing Hong-Sau</li>
+          <li>5th: 60' Sound Healing session for Meditation Goals</li>
         </ul>
       </div>
       <div class="program">
         <div class="program__icon">👨‍👩‍👧‍👦</div>
-        <h3>Family</h3>
+        <h3>Family Package</h3>
         <ul>
-          <li>60' Meeting, Introduction + Sound Bath</li>
-          <li>30' Breath/Sound techniques + 30' Healing</li>
-          <li>30' Interactive Sound Healing + 30' of choice</li>
-          <li>30' Energy Restore + 30' Guided Healing</li>
-          <li>60' Sound Bath immersive experience</li>
+          <li>1st: 60' Meeting, Introduction + Sound Bath</li>
+          <li>2nd: 30' Breath/Sound techniques + 30' Sound Healing Session</li>
+          <li>3rd: 30' Interactive Sound Healing Session + 30' of choice</li>
+          <li>4th: 30' Energy Restore exercise + 30' Guided Sound Healing</li>
+          <li>5th: 60' Sound Bath immersive experience</li>
         </ul>
       </div>
       <div class="program">
         <div class="program__icon">💞</div>
-        <h3>Couple — Beginners</h3>
+        <h3>Couple Reconnect — Beginners</h3>
         <ul>
-          <li>60' Intro, energy exercise + Heart Chakra Healing</li>
-          <li>60' Past wounds + Release, Forgive, Heal</li>
-          <li>60' Intimacy Sound Healing Session</li>
-          <li>30' Chakra alignment + 30' Coupled chakras</li>
-          <li>30' Reflection & home exercises + 30' Custom</li>
+          <li>1st: 60' Intro, energy exercise + Sound Healing on Heart Chakra</li>
+          <li>2nd: 60' Past wounds/blockages + Sound Healing Release, Forgive, Heal</li>
+          <li>3rd: 60' Intimacy Sound Healing Session</li>
+          <li>4th: 30' Chakra alignment + 30' Sound Healing coupled chakras</li>
+          <li>5th: 30' Reflection &amp; Exercises for home + 30' Custom Sound Healing</li>
         </ul>
       </div>
       <div class="program">
         <div class="program__icon">🔥</div>
-        <h3>Couple — Advanced</h3>
+        <h3>Couple Reconnect — Advanced with Tantra</h3>
         <ul>
-          <li>30' Tantra Intro & exercise + 30' Sound Healing</li>
-          <li>30' Sacral Chakra intimacy + 30' Sacral Healing</li>
-          <li>30' Throat chakra + 30' Sacral/Throat Healing</li>
-          <li>30' Guided Couple Union + 30' SelfHeal teaching</li>
-          <li>60' Custom Sound Bath</li>
+          <li>1st: 30' Tantra Intro &amp; exercise + 30' Sound Healing Session</li>
+          <li>2nd: 30' Sacral Chakra intimacy exercises + 30' Sacral Sound Healing</li>
+          <li>3rd: 30' Throat chakra and voice activity + 30' Sacral/Throat Sound Healing</li>
+          <li>4th: 30' Guided Sound Healing Couple Union + 30' SelfHeal teaching</li>
+          <li>5th: 60' Custom Sound Bath</li>
         </ul>
       </div>
       <div class="program">
         <div class="program__icon">👁️</div>
-        <h3>Spiritual Awakening</h3>
+        <h3>Spiritual Awakening Package</h3>
         <ul>
-          <li>30' Spiritual Journey + 30' Crown Chakra Healing</li>
-          <li>60' Sound Healing with Crystals</li>
-          <li>60' Sound Healing + Akashic Records Access</li>
-          <li>30' Nature Elements + 30' Hot & Cold Healing</li>
-          <li>60' Heart chakra, Universal Love, Interdimensional</li>
+          <li>1st: 30' Spiritual Journey and Intentions + 30' Sound Healing Crown Chakra</li>
+          <li>2nd: 60' Sound Healing Session with Crystals</li>
+          <li>3rd: 60' Sound Healing Session with Akashic Records Access</li>
+          <li>4th: 30' Nature Elements + 30' Hot &amp; Cold Sound Healing</li>
+          <li>5th: 60' Sound Healing Heart chakra, Universal Love, Interdimensional</li>
         </ul>
       </div>
       <div class="program program--wide">
         <div class="program__icon">🦋</div>
-        <h3>Deep Healing & Transformation</h3>
+        <h3>Deep Healing &amp; Transformation Package</h3>
         <ul class="program__list--inline">
-          <li>60' Exercise + Sound Healing for Release</li>
-          <li>30' Inner child visualization + 30' Nurture Healing</li>
-          <li>60' Trauma and Emotional Strength</li>
-          <li>30' Energy Cleanse + 30' Cleanse & Energize</li>
-          <li>30' Sound Draw + 30' Sound Healing Session</li>
+          <li>1st: 60' Exercise + Sound Healing for Release</li>
+          <li>2nd: 30' Inner child visualization + 30' Nurture Sound Healing</li>
+          <li>3rd: 60' Sound Healing for Trauma and Emotional Strength</li>
+          <li>4th: 30' Energy Cleanse Space + 30' Cleanse and Energize Sound Healing</li>
+          <li>5th: 30' Sound Draw + 30' Sound Healing Session</li>
         </ul>
       </div>
     </div>
@@ -857,7 +711,7 @@
   const soundOnIcon = document.getElementById('soundOn');
   const soundOffIcon = document.getElementById('soundOff');
 
-  const SOUND_URL = 'https://cdn.freesound.org/previews/746/746023_5674468-lq.mp3';
+  const SOUND_URL = 'singing-bowl-hit-3-33366.mp3';
   let audio = null, soundPlaying = false;
 
   function updateToggleIcon() {
@@ -929,7 +783,7 @@
   splash.addEventListener('click', async () => {
     if (started) return; started = true;
 
-    audio = new Audio(SOUND_URL); audio.loop = true; audio.volume = 0.4;
+    audio = new Audio(SOUND_URL); audio.loop = false; audio.volume = 0.5;
     audio.play().then(() => { soundPlaying = true; updateToggleIcon(); }).catch(() => {});
 
     tunnel.classList.add('portal-tunnel--active');
@@ -1015,7 +869,23 @@ document.querySelectorAll('.nav__link').forEach(l => l.addEventListener('click',
   navLinks.classList.remove('nav__links--open');
   burger.classList.remove('burger--open');
   document.body.classList.remove('no-scroll');
+  document.getElementById('navDropdownMenu').classList.remove('nav__dropdown-menu--open');
 }));
+
+// Nav dropdown
+const dropTrigger = document.getElementById('navDropdownTrigger');
+const dropMenu = document.getElementById('navDropdownMenu');
+const dropWrap = dropTrigger.closest('.nav__dropdown');
+dropTrigger.addEventListener('click', () => {
+  dropMenu.classList.toggle('nav__dropdown-menu--open');
+  dropWrap.classList.toggle('nav__dropdown--open');
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav__dropdown')) {
+    dropMenu.classList.remove('nav__dropdown-menu--open');
+    dropWrap.classList.remove('nav__dropdown--open');
+  }
+});
 
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
@@ -1075,17 +945,6 @@ presetsEl.querySelectorAll('.tp__preset').forEach(b => {
 
 applyTheme(current);
 
-// Compare table tabs
-document.querySelectorAll('.compare-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.compare-tab').forEach(t => t.classList.remove('compare-tab--active'));
-    tab.classList.add('compare-tab--active');
-    const filter = tab.dataset.filter;
-    document.querySelectorAll('.compare__table th[data-cat], .compare__table td[data-cat]').forEach(cell => {
-      cell.style.display = (filter === 'all' || cell.dataset.cat === filter) ? '' : 'none';
-    });
-  });
-});
 
 // Glow intensity
 const glowSlider = document.getElementById('glowSlider');
